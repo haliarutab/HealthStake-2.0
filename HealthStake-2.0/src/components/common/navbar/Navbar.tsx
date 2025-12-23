@@ -2,133 +2,128 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Activity } from "lucide-react"; 
-import { useState } from "react";
+import { Menu, X } from "lucide-react"; 
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Solution", href: "#" },
+    { name: "Platform", href: "#" },
+    { name: "AI Features", href: "#" },
+    { name: "Security", href: "#" },
+  ];
 
   return (
-    <header className="border-b border-gray-200 bg-white sticky top-0 z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo with Branding Icon */}
+    <header 
+      className={cn(
+        "fixed top-0 w-full z-50 transition-all duration-300 border-b",
+        scrolled 
+          ? "bg-white border-gray-200 py-3 shadow-sm" 
+          : "bg-transparent border-white/5 py-5"
+      )}
+    >
+      <nav className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="flex items-center justify-between">
+          
+          {/* LOGO AREA */}
           <div className="shrink-0">
-            <Link href="/" className="text-2xl font-bold text-blue-600 flex items-center gap-2">
-              <Activity className="w-8 h-8" />
-              <span>HealthStake</span>
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 bg-gradient-to-br from-[#21c6ba] to-[#2b89f5] rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                <span className="text-white font-black text-xl">H</span>
+              </div>
+              <span className={cn(
+                "text-xl font-bold tracking-tight transition-colors",
+                scrolled ? "text-slate-900" : "text-white"
+              )}>
+                Healthstake
+              </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation Links - Centered */}
-          <div className="hidden md:flex flex-1 justify-center space-x-8">
-            <Link
-              href="/"
-              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              Home
-            </Link>
-            <Link
-              href="/services"
-              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              Services
-            </Link>
-            <Link
-              href="/find-doctors"
-              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              Find Doctors
-            </Link>
-            <Link
-              href="/about"
-              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              About us
-            </Link>
-            <Link
-              href="/contact"
-              className="text-gray-600 hover:text-blue-600 font-medium transition-colors"
-            >
-              Contact us
-            </Link>
+          {/* DESKTOP NAV LINKS */}
+          <div className="hidden md:flex items-center space-x-10">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "text-sm font-semibold transition-all hover:opacity-100",
+                  scrolled 
+                    ? "text-slate-600 hover:text-[#21c6ba]" 
+                    : "text-white/70 hover:text-[#21c6ba]"
+                )}
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
 
-          {/* Right side - Register button + For Nurse Link */}
-          <div className="hidden md:flex items-center space-x-6">
-            <Button
-              asChild
-              className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 h-11 transition-all"
-            >
-              <Link href="/register">Register</Link>
-            </Button>
-
-            {/* Modified: Now a functional link redirecting to Login */}
+          {/* RIGHT SIDE ACTIONS */}
+          <div className="hidden md:flex items-center space-x-8">
             <Link 
               href="/login" 
-              className="text-gray-700 font-semibold hover:text-blue-600 transition-colors"
+              className={cn(
+                "text-sm font-bold transition-colors",
+                scrolled ? "text-slate-700 hover:text-primary" : "text-white hover:text-[#21c6ba]"
+              )}
             >
-              For Nurse
+              Sign In
             </Link>
+            
+            <Button
+              asChild
+              className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] hover:opacity-90 text-white rounded-full px-7 h-11 font-bold shadow-lg shadow-blue-500/20 transition-transform active:scale-95"
+            >
+              <Link href="/demo">Request Demo</Link>
+            </Button>
           </div>
 
-          {/* Mobile menu button */}
+          {/* MOBILE TOGGLE */}
           <div className="md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 focus:outline-none"
-              aria-label="Toggle menu"
+              className={cn(
+                "p-2 rounded-lg transition-colors",
+                scrolled ? "text-slate-900" : "text-white"
+              )}
             >
-              {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu - Slides down */}
+        {/* MOBILE MENU */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white">
-            <div className="px-2 pt-4 pb-6 space-y-2">
-              <Link
-                href="/"
-                className="block px-4 py-3 text-gray-600 hover:text-blue-600 font-medium transition-colors rounded-xl hover:bg-gray-50"
+          <div className="absolute top-full left-0 w-full bg-[#08121d] border-b border-white/10 p-6 flex flex-col gap-6 md:hidden animate-in fade-in slide-in-from-top-4">
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                href={link.href} 
+                className="text-white/80 font-medium text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Home
+                {link.name}
               </Link>
-              <Link
-                href="/services"
-                className="block px-4 py-3 text-gray-600 hover:text-blue-600 font-medium transition-colors rounded-xl hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Services
-              </Link>
-              <Link
-                href="/about"
-                className="block px-4 py-3 text-gray-600 hover:text-blue-600 font-medium transition-colors rounded-xl hover:bg-gray-50"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About us
-              </Link>
-
-              {/* Mobile CTA Section */}
-              <div className="pt-4 border-t border-gray-100 mt-4 px-4 space-y-4">
-                <Button
-                  asChild
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-full py-6"
-                >
-                  <Link href="/register">Register</Link>
-                </Button>
-
-                <div className="text-center">
-                  <Link 
-                    href="/login"
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="text-gray-700 font-bold hover:text-blue-600"
-                  >
-                    For Nurse (Login)
-                  </Link>
-                </div>
-              </div>
+            ))}
+            <hr className="border-white/10" />
+            <div className="flex flex-col gap-4">
+              <Link href="/login" className="text-white font-bold text-center">Sign In</Link>
+              <Button className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] rounded-full py-6 text-white font-bold">
+                Request Demo
+              </Button>
             </div>
           </div>
         )}

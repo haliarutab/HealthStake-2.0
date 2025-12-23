@@ -2,8 +2,8 @@
 
 import Navbar from "@/components/common/navbar/Navbar";
 import Hero from "@/components/common/herosection/herosection";
-import WhyChooseUs from "@/app/home/whychooseus/whychooseus";
-import HowPlatformWorks from "@/app/home/HowPlatformWorks/howplatformworks";
+import WhyChooseUs from "@/app/home/DiabetesCare/DaibetesCare";
+import HowPlatformWorks from "@/app/home/OnePlatform/OnePlatform";
 import ClientSuccessStories from "./ClientSuccessStories/ClientSuccessStories";
 import SubscribeSection from "./SubscribeSection/SubscribeSection";
 import DownloadApp from "./DownloadApp/DownloadApp";
