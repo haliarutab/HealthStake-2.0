@@ -5,10 +5,7 @@ import { CrossGridPattern } from "@/components/ui/cross-grid-pattern";
 
 export default function Hero() {
   return (
-    /* FIX: Added 'pt-24' (6rem) to account for the fixed navbar height.
-       Also used 'min-h-[calc(100vh-theme(spacing.20))]' to ensure the content 
-       is centered in the remaining viewport area.
-    */
+    
     <section className="relative min-h-screen bg-[#08121d] text-white overflow-hidden flex items-center pt-24 md:pt-32 pb-20">
       <CrossGridPattern />
 

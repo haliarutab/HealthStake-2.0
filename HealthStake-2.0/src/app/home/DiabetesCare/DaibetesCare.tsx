@@ -40,7 +40,7 @@ export default function ChallengeSection() {
        
           
           {/* Exact Decorative Corner Accents from Image */}
-          <div className="absolute top-10 left-10 w-24 h-24 border-l-[3px] border-t-[3px] border-[#cbd5e1] rounded-tl-[30px] opacity-60" />
+
           <div className="absolute bottom-10 right-10 w-24 h-24 border-r-[3px] border-b-[3px] border-[#1e293b] rounded-br-[30px] opacity-80" />
 
           {/* Header */}
