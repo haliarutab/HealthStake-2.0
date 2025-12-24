@@ -87,7 +87,7 @@ export default function Navbar() {
               asChild
               className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] hover:opacity-90 text-white rounded-full px-7 h-11 font-bold shadow-lg shadow-blue-500/20 transition-transform active:scale-95"
             >
-              <Link href="/demo">Request Demo</Link>
+              <Link href="/demo">Contact Us</Link>
             </Button>
           </div>
 
