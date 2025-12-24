@@ -127,7 +127,7 @@ export default function StakeholderModules() {
   return (
     <section className="bg-[#05111d] py-20 px-6 text-white font-sans min-h-screen">
       <div className="max-w-6xl mx-auto">
-        
+
         <div className="text-center mb-12">
           <span className="bg-[#112a33] text-[#2cc1a7] text-xs font-bold px-3 py-1 rounded-full border border-[#1a3d40]">Platform Modules</span>
           <h2 className="text-4xl md:text-5xl font-bold mt-6">
@@ -143,13 +143,12 @@ export default function StakeholderModules() {
             <button
               key={mod.id}
               onClick={() => setActiveTab(mod.id)}
-              style={{ 
-                backgroundColor: activeTab === mod.id ? mod.color : "#16252e", 
-                borderColor: activeTab === mod.id ? mod.color : "#24343d" 
+              style={{
+                backgroundColor: activeTab === mod.id ? mod.color : "#16252e",
+                borderColor: activeTab === mod.id ? mod.color : "#24343d"
               }}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all text-sm border font-medium ${
-                activeTab === mod.id ? "text-white shadow-[0_0_15px_rgba(0,0,0,0.4)]" : "text-gray-400 hover:border-gray-500"
-              }`}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full transition-all text-sm border font-medium ${activeTab === mod.id ? "text-white shadow-[0_0_15px_rgba(0,0,0,0.4)]" : "text-gray-400 hover:border-gray-500"
+                }`}
             >
               <span>{mod.icon}</span> {mod.label}
             </button>
@@ -157,7 +156,7 @@ export default function StakeholderModules() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          
+
           <div className="space-y-4">
             <div className="flex items-center gap-4 mb-8">
               <div style={{ backgroundColor: activeData.color }} className="p-3 rounded-xl shadow-lg">
@@ -197,9 +196,9 @@ export default function StakeholderModules() {
 
             <div className="grid grid-cols-3 gap-4 mb-10">
               {activeData.stats.map((s, i) => (
-                <div 
-                  key={i} 
-                  className={`bg-[#16252e] p-5 rounded-2xl text-center ${s.border ? 'border-b-2' : ''}`} 
+                <div
+                  key={i}
+                  className={`bg-[#16252e] p-5 rounded-2xl text-center ${s.border ? 'border-b-2' : ''}`}
                   style={{ borderBottomColor: s.border ? activeData.color : 'transparent' }}
                 >
                   <p className={`text-2xl font-bold ${s.valCol || 'text-white'}`}>{s.val}</p>
@@ -209,16 +208,22 @@ export default function StakeholderModules() {
               ))}
             </div>
 
-            <div className="flex items-end gap-2.5 h-28 mb-10 px-2 bg-[#0e1e29]">
-              {activeData.chart.map((h, i) => (
-                <div key={i} className="flex-1 rounded-t-sm relative group" style={{ backgroundColor: `${activeData.color}15` }}>
-                  <div 
-                    style={{ height: `${h}%`, backgroundColor: activeData.color }} 
-                    className="w-full rounded-t-md shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-700 ease-out"
-                  ></div>
-                </div>
-              ))}
-            </div>
+            {/* BAR CHART */}
+          {/* BAR CHART */}
+<div className="bg-[#0b1724] rounded-[20px] md:rounded-[35px] p-4 md:p-6 h-32 flex items-end justify-between gap-1 border border-white/5 mb-10">
+  {activeData.chart.map((h, i) => (
+    <div
+      key={i}
+      className="w-full rounded-t-[2px] transition-all duration-500"
+      style={{ 
+        height: `${h}%`,
+        backgroundColor: activeData.color, // Dynamically set color
+        boxShadow: `0 0 15px ${activeData.color}33` // Optional: adds a subtle glow in that color (33 is hex for 20% opacity)
+      }}
+    />
+  ))}
+</div>
+
 
             <div className="space-y-4">
               {[1, 2, 3].map((i) => (
