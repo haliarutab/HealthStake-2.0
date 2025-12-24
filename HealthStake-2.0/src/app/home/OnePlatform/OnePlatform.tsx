@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CheckCircle2, ArrowRight, Laptop, Activity, Beaker, Stethoscope, Smartphone } from "lucide-react";
+import { CheckCircle2, ArrowRight, Laptop, BrainCircuit, Beaker, Stethoscope, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function SolutionSection() {
@@ -15,16 +15,15 @@ export default function SolutionSection() {
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 items-center gap-16 lg:gap-24">
         
         {/* LEFT SIDE: CONTENT */}
-        <div className="space-y-10 relative z-10">
-          <span className="inline-block px-5 py-2 rounded-full bg-[#ccfbf1] text-[#0d9488] text-[12px] font-bold uppercase tracking-[0.2em]">
+        <div className="space-y-8 relative z-10">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-[#ccfbf1] text-[#0d9488] text-[12px] font-bold uppercase tracking-[0.1em]">
             Our Solution
           </span>
           
           <div className="space-y-6">
-            {/* EXACT GRADIENT TEXT EFFECT */}
             <h2 className="text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight">
               <span className="text-[#0f172a]">One Platform,</span> <br />
-              <span className="bg-gradient-to-r from-[#21c6ba] via-[#36b7ff] to-[#4c86f9] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] bg-clip-text text-transparent">
                 Complete Care
               </span>
             </h2>
@@ -33,49 +32,48 @@ export default function SolutionSection() {
             </p>
           </div>
 
-          <ul className="space-y-5">
+          <ul className="space-y-4">
             {solutionFeatures.map((item, i) => (
-              <li key={i} className="flex items-center gap-4 group">
-                <div className="bg-[#ccfbf1] p-1.5 rounded-full group-hover:scale-110 transition-transform">
-                  <CheckCircle2 size={18} className="text-[#0d9488]" />
+              <li key={i} className="flex items-center gap-4">
+                <div className="bg-[#ccfbf1] p-1 rounded-full shrink-0">
+                  <CheckCircle2 size={16} className="text-[#0d9488]" strokeWidth={3} />
                 </div>
-                <span className="text-[#475569] font-medium text-[16px] group-hover:text-[#0f172a] transition-colors">
+                <span className="text-[#475569] font-medium text-[16px]">
                   {item}
                 </span>
               </li>
             ))}
           </ul>
 
-          <Link href="#" className="inline-flex items-center gap-3 text-[#0d9488] font-bold text-lg hover:underline transition-all">
-            Explore the Platform <ArrowRight size={20} />
+          <Link href="#" className="inline-flex items-center gap-2 text-[#0d9488] font-bold text-lg hover:gap-4 transition-all group">
+            Explore the Platform <ArrowRight size={20} className="transition-transform" />
           </Link>
         </div>
 
-        {/* RIGHT SIDE: CENTRAL HUB VISUALIZATION */}
-        <div className="relative flex justify-center items-center h-[500px] lg:h-[600px]">
-          {/* Animated Glow Backdrop */}
-          <div className="absolute w-[300px] h-[300px] bg-[#2b89f5]/10 blur-[100px] rounded-full animate-pulse" />
+        {/* RIGHT SIDE: CENTRAL HUB VISUALIZATION (EXACT MATCH) */}
+        <div className="relative flex justify-center items-center h-[500px] lg:h-[550px]">
+          
+          {/* SVG CONNECTING LINES (Positioned behind nodes) */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" viewBox="0 0 500 500">
+             {/* Lines radiating from center 250,250 to node positions */}
+             <line x1="250" y1="250" x2="380" y2="150" stroke="#36b7ff" strokeWidth="1.5" /> {/* Patient App */}
+             <line x1="250" y1="250" x2="420" y2="300" stroke="#36b7ff" strokeWidth="1.5" /> {/* Nursing Portal */}
+             <line x1="250" y1="250" x2="380" y2="440" stroke="#36b7ff" strokeWidth="1.5" /> {/* Doctor Module */}
+             <line x1="250" y1="250" x2="160" y2="440" stroke="#36b7ff" strokeWidth="1.5" /> {/* Lab Integration */}
+             <line x1="250" y1="250" x2="80" y2="250" stroke="#36b7ff" strokeWidth="1.5" />  {/* AI Engine */}
+          </svg>
           
           {/* CENTER LOGO HUB */}
-          <div className="relative z-20 w-36 h-36 md:w-44 md:h-44 rounded-full bg-gradient-to-br from-[#21c6ba] via-[#2b89f5] to-[#4c86f9] flex items-center justify-center text-white shadow-[0_0_50px_rgba(43,137,245,0.3)]">
-            <span className="text-xl md:text-2xl font-bold tracking-tight">Healthstake</span>
+          <div className="relative z-20 w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-b from-[#21c6ba] to-[#2b89f5] flex items-center justify-center text-white shadow-2xl">
+            <span className="text-xl md:text-2xl font-bold">Healthstake</span>
           </div>
 
-          {/* CONNECTING NODES (Floating Bubbles) */}
-          <Node icon={<Smartphone size={22} />} label="Patient App" className="-top-12 left-1/2 -translate-x-1/2" />
-          <Node icon={<Laptop size={22} />} label="Nursing Portal" className="top-1/4 -right-12 md:-right-16" />
-          <Node icon={<Stethoscope size={22} />} label="Doctor Module" className="bottom-0 right-4 md:right-8" />
-          <Node icon={<Beaker size={22} />} label="Lab Integration" className="bottom-0 left-4 md:left-8" />
-          <Node icon={<Activity size={22} />} label="AI Engine" className="top-1/4 -left-12 md:-left-16" />
-
-          {/* SVG CONNECTING LINES */}
-          <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40 z-10" viewBox="0 0 400 400">
-             <line x1="200" y1="200" x2="200" y2="40" stroke="#2b89f5" strokeWidth="2" strokeDasharray="6,4" />
-             <line x1="200" y1="200" x2="360" y2="120" stroke="#2b89f5" strokeWidth="2" strokeDasharray="6,4" />
-             <line x1="200" y1="200" x2="320" y2="340" stroke="#2b89f5" strokeWidth="2" strokeDasharray="6,4" />
-             <line x1="200" y1="200" x2="80" y2="340" stroke="#2b89f5" strokeWidth="2" strokeDasharray="6,4" />
-             <line x1="200" y1="200" x2="40" y2="120" stroke="#2b89f5" strokeWidth="2" strokeDasharray="6,4" />
-          </svg>
+          {/* CONNECTING NODES */}
+          <Node icon={<Smartphone size={24} />} label="Patient App" className="top-12 right-12 md:right-16" />
+          <Node icon={<Laptop size={24} />} label="Nursing Portal" className="top-1/2 -right-4 md:-right-8 -translate-y-1/2" />
+          <Node icon={<Stethoscope size={24} />} label="Doctor Module" className="bottom-8 right-12 md:right-20" />
+          <Node icon={<Beaker size={24} />} label="Lab Integration" className="bottom-8 left-12 md:left-20" />
+          <Node icon={<BrainCircuit size={24} />} label="AI Engine" className="top-1/2 -left-4 md:-left-8 -translate-y-1/2" />
         </div>
       </div>
     </section>
@@ -84,11 +82,11 @@ export default function SolutionSection() {
 
 function Node({ icon, label, className }: { icon: React.ReactNode; label: string; className: string }) {
   return (
-    <div className={cn("absolute z-20 flex flex-col items-center gap-3 animate-pulse duration-[4000ms]", className)}>
-      <div className="bg-white p-5 rounded-2xl shadow-xl border border-slate-100 text-[#0d9488] hover:scale-110 hover:shadow-2xl transition-all cursor-pointer">
+    <div className={cn("absolute z-20 flex flex-col items-center gap-2", className)}>
+      <div className="bg-white p-4 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 text-[#0d9488] hover:scale-105 transition-transform duration-300">
         {icon}
       </div>
-      <span className="text-[13px] font-bold text-[#475569] whitespace-nowrap bg-white/90 px-3 py-1 rounded-full backdrop-blur-md border border-slate-100 shadow-sm">
+      <span className="text-[12px] font-bold text-[#475569] whitespace-nowrap px-2">
         {label}
       </span>
     </div>
