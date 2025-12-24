@@ -122,7 +122,7 @@ export default function Navbar() {
             <div className="flex flex-col gap-4">
               <Link href="/login" className="text-white font-bold text-center">Sign In</Link>
               <Button className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] rounded-full py-6 text-white font-bold">
-                Request Demo
+               Contact Us
               </Button>
             </div>
           </div>
