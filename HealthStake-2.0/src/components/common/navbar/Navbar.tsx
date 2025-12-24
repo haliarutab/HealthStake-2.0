@@ -27,14 +27,15 @@ export default function Navbar() {
   ];
 
   return (
-    <header 
-      className={cn(
-        "fixed top-0 w-full z-50 transition-all duration-300 border-b",
-        scrolled 
-          ? "bg-white border-gray-200 py-3 shadow-sm" 
-          : "bg-transparent border-white/5 py-5"
-      )}
-    >
+   <header
+  className={cn(
+    "w-full z-50 transition-all duration-300 border-b",
+    scrolled
+      ? "bg-white border-gray-200 py-3 shadow-sm"
+      : "bg-[#08121d]/90 backdrop-blur border-white/5 py-5"
+  )}
+>
+
       <nav className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between">
           
@@ -122,7 +123,7 @@ export default function Navbar() {
             <div className="flex flex-col gap-4">
               <Link href="/login" className="text-white font-bold text-center">Sign In</Link>
               <Button className="bg-gradient-to-r from-[#21c6ba] to-[#2b89f5] rounded-full py-6 text-white font-bold">
-               Contact Us
+               Contact
               </Button>
             </div>
           </div>

@@ -12,12 +12,17 @@ import Footer from "@/components/common/footer/Footer";
 import HealthcareLeaders from "./HealthcareLeaders/HealthcareLeaders";
 import CTASection from "./CTASection/CTASection";
 import DownloadApp from "./DownloadApp/DownloadApp";
+import AnnouncementBar from "@/components/ui/AnnouncementBar";
 export default function HomePage() {
   return (
     <>
+<div className="sticky top-0 z-50">
+  <AnnouncementBar />
+  <Navbar />
+</div>
 
-      <Navbar />
-     <Hero />
+
+      <Hero />
       <WhyChooseUs />
       <HowPlatformWorks />
       <ClientSuccessStories />
